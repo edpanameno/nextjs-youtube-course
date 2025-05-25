@@ -8,7 +8,7 @@ import React from 'react'
 const UserNotFoundPage = () => {
   return (
     <div>
-        <p>User not found error page</p>
+        <p>User has was not found with the ID provided.</p>
     </div>
   )
 }

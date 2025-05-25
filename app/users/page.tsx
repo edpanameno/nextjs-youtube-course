@@ -1,23 +1,24 @@
+import UserList from "@/components/UsersList";
+
 /**
  * Note that this is a server component, so you can use async/await directly.
  * @returns 
  */
 const UsersPage = async () => {
     
-    const response = await fetch('https://jsonplaceholder.typicode.com/users');
+    // Note: This is a very common pattern in Next.js (App Directory).
+    // Data is fetched in a server component and passed as props to a client component.
+    // This leverages server-side data fetching and client-side interactivity.
+    const response = await fetch('https://jsonplaceholder.typicode.com/users', {
+        cache: 'no-cache',  // Disable caching for this request
+    });
+   
     const users = await response.json();
-
+    
     return (
-        <>
-            <div>Welcome to the users page</div>
-            <div>
-                {users.map((user: { id: number; name: string; }) => (
-                    <li key={user.id}>
-                        <h3>{user.name}</h3>
-                    </li>
-                ))}
-            </div>
-        </>
+        <div style={{ padding: "2rem" }}>
+            <UserList users={users} />
+        </div>
     )
 }
 
